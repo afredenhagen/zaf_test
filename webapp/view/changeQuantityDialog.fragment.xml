@@ -1,0 +1,102 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog title="{Txz01} ({Matnr})" stretch="true" id="changeQuantityDialog">
+		<content>
+			<IconTabBar id="tabDialog" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter key="quantity" icon="sap-icon://number-sign">
+						<VBox height="10px"/>
+						<VBox>
+							<FlexBox width="100%" justifyContent="Center" alignItems="Center">
+								<FlexBox width="75%" justifyContent="Center" alignItems="Center">
+									<VBox>
+										<Table inset="false" id="tableMenge">
+											<columns>
+												<Column></Column>
+												<Column></Column>
+											</columns>
+											<items>
+												<ColumnListItem>
+													<cells>
+														<Text text="{i18n>ordered}"/>
+														<ObjectNumber class="sapUiTinyMarginBottom" number="{Menge}" unit="{Meins}"/>
+													</cells>
+												</ColumnListItem>
+												<ColumnListItem>
+													<cells>
+														<Text text="{i18n>partiallyDelivered}"/>
+														<ObjectNumber class="sapUiTinyMarginBottom" number="{MengeH}" unit="{Meins}"/>
+													</cells>
+												</ColumnListItem>
+												<ColumnListItem>
+													<cells>
+														<Text text="{i18n>deliveredQuant}"/>
+														<Input id="idMengeChange" change="onChangeMengeR" value="{MengeR}" description="{Meins}"/>
+													</cells>
+												</ColumnListItem>
+											</items>
+										</Table>
+										<CheckBox text="{i18n>closed}" selected="{Elikz}"/>
+									</VBox>
+								</FlexBox>
+							</FlexBox>
+						</VBox>
+					</IconTabFilter>
+					<IconTabFilter key="bobine" id="tabFilterBobine" icon="sap-icon://bold-text">
+						<VBox class="sapUiSmallMargin">
+							<f:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>reelCare}" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+								singleContainerFullSize="false">
+								<f:content>
+									<VBox>
+										<Label text="{i18n>cableReelInt}"/>
+										<Input id="iCableReel" maxLength="10"/>
+										<Label text="{i18n>batchExt}"/>
+										<Input id="ibatchExt" maxLength="15"/>
+										<Label text="{i18n>productioncode}"/>
+										<Input id="iProductioncode" maxLength="3"/>
+									</VBox>
+								</f:content>
+							</f:SimpleForm>
+						</VBox>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://print" visible="false">
+						<VBox class="sapUiSmallMargin">
+							<f:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>labelPrint}" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+								singleContainerFullSize="false">
+								<f:content>
+									<VBox>
+										<Select id="selectLabel" selectedKey="{LabelName}">
+											<core:Item key="GROSS" text="Gross 200x100"/>
+											<core:Item key="MITTEL" text="Mittel 100x35"/>
+											<core:Item key="KLEIN" text="Klein 100x20"/>
+										</Select>
+										<Label text="Anzahl"/>
+										<Input id="labelCount" type="Tel" value="{LabelCount}" placeholder="#" change="onLabelCountChange"/>
+										<Label text="{i18n>consumptionDate}"/>
+										<FlexBox direction="Row">
+											<FlexBox direction="Column">
+												<Label text="{i18n>month}"/>
+												<Input id="iMonth" type="Tel" maxLength="2" placeholder="MM"/>
+											</FlexBox>
+											<FlexBox direction="Column">
+												<Label text="{i18n>year}"/>
+												<Input id="iYear" type="Tel" maxLength="4" placeholder="YYYY"/>
+											</FlexBox>
+										</FlexBox>
+									</VBox>
+								</f:content>
+							</f:SimpleForm>
+						</VBox>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+		<beginButton>
+			<Button text="{i18n>save}" press="onBtnSubmitDialogPress" type="Accept" width="100px"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>cancel}" press="onBtnCancelPress" type="Reject" width="100px"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,51 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns:f="sap.ui.layout.form"
+	controllerName="com.mindsquare.gdmvt.receipt.ushio.controller.Detail">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>order} {Ebeln}"
+		busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}" class="sapUiNoContentPadding">
+		<semantic:content>
+			<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="5"
+				adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="false">
+				<Label text="{i18n>lfsnr1}" visible="false"/>
+				<Input value="{Lfsnr1}" visible="false"/>
+				<Label text="{i18n>anforderer}"/>
+				<Text text="{ReqName}"/>
+				
+			</f:SimpleForm>
+			<Panel visible="false" expandable="true" expanded="false" headerText="{i18n>info}" width="auto" class="sapUiResponsiveMargin">
+				<content>
+					<VBox>
+						<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="5"
+							adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+							singleContainerFullSize="false">
+							<f:content>
+								<Label text="{i18n>document}"/>
+								<Text text="{Ebeln}"/>
+								<Label text="{i18n>creditor}"/>
+								<Text text="{Name1},{Lifnr}"/>
+								<Label text="{i18n>docCat}"/>
+								<Text text="{Bsart}"/>
+								<Label text="{i18n>purchGroup}"/>
+								<Text text="{Eknam}, {Ekgrp}"/>
+								<Label text="{i18n>createdOn}"/>
+								<Text text="{path : 'Aedat', type : 'sap.ui.model.type.Date', formatOptions: { style : 'medium'}}"/>
+								<Label text="{i18n>bukrs}"/>
+								<Text text="{Bukrs}"/>
+							</f:content>
+						</f:SimpleForm>
+					</VBox>
+				</content>
+			</Panel>
+			
+			<Panel expandable="false" expanded="true" width="auto" class="sapUiNoContentPadding">
+				<List id="postionList" mode="MultiSelect" items="{path: 'navHeaderItem', factory: '.itemFactory'}" updateFinished=".onPOItemUpdateFinished">
+				</List>
+			</Panel>
+		</semantic:content>
+		
+		<semantic:positiveAction>
+			<semantic:PositiveAction text="{i18n>postReceipt}" press="onBtnSubmitReceipPressNew" icon="sap-icon://receipt"/>
+		</semantic:positiveAction>
+		
+	</semantic:DetailPage>
+</mvc:View>
